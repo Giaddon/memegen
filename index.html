@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Graham Trail</title>
+  <meta name="description" content="Personal Site">
+  <meta name="author" content="Graham Trail">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Homemade+Apple&display=swap" rel="stylesheet"> 
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body style="background-color: #fff;">
+    
+ <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– --> 
+  <div class="container">
+   
+  <div class="row card">
+      <div class="column">
+        <h2>Meme Generator</h2>
+        <p>Make a meme, join the discourse.</p>
+      </div>
+    </div>
+      
+     <form class="form">
+      <div class="row card">
+        <div class="column">
+          <h4>+New Meme</h4>
+          <label>Meme image URL<input class="u-full-width" type="text" placeholder="https://dankmemeimg.png" id="imgurl"></label>
+        </div>
+      </div>
+      <div class="row card">    
+        <div class="six columns">
+           <label>Top text<input class="u-full-width" type="text" placeholder="Dank" id="toptextfield"></label>
+        </div>
+        <div class="six columns">
+           <label>Bottom text<input class="u-full-width" type="text" placeholder="Meme" id="bottomtextfield"></label>
+         <a class="button button-primary" href="#" id="submitButton">Create</a>
+        </div>
+      </div>
+    </form>  
+      
+    
+    
+   
+    
+</div>
+<!-- End Document and Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+  // Set up variables
+  var memeList = document.querySelector(".container");
+  var submitButton = document.querySelector("#submitButton");
+  var memePlaceholder = document.querySelector("#placeholder");
+  var memeURLfield = document.querySelector("#imgurl");
+  var topTextField = document.querySelector("#toptextfield");
+  var bottomTextField = document.querySelector("#bottomtextfield");
+  var meme = document.querySelector("#meme");       
+  var divMeme = document.querySelector(".meme");
+  
+  //Form button press    
+  submitButton.addEventListener("click", createNewMeme);
+
+  //Delete meme button press    
+  document.querySelector(".remove").addEventListener("click", deleteMeme);
+    
+  function createNewMeme(){
+    //create the new elements 
+    var memeContainer = document.createElement("div");
+    var meme = document.createElement("div");
+    var top = document.createElement("p");
+    var bottom = document.createElement("p");  
+    var remove = document.createElement("div"); 
+    var removeText = document.createElement("p");   
+      
+    // configure the new elements
+    memeContainer.classList.add("row")
+    memeContainer.classList.add("memeContainer")  
+    meme.classList.add("meme");  
+    meme.style["background-image"] = "url("+memeURLfield.value+")";
+    top.classList.add("memetext")
+    top.innerHTML = topTextField.value;
+    bottom.classList.add("memetext")
+    bottom.innerHTML = bottomTextField.value;
+    remove.classList.add("remove")
+    removeText.innerHTML = "X";
+      
+    remove.addEventListener("click", deleteMeme);
+      
+    // add everything to parents
+    remove.appendChild(removeText);
+    meme.appendChild(top);
+    meme.appendChild(bottom);
+    meme.appendChild(remove);
+    memeContainer.appendChild(meme);
+    memeList.appendChild(memeContainer);
+    
+    // clear form
+    memeURLfield.value = "";
+    topTextField.value = "";
+    bottomTextField.value = "";
+  }
+    
+    
+  function newMeme(){
+    divMeme.style["background-image"] = "url("+memeURLfield.value+")";
+    topText.innerHTML = topTextField.value;
+    bottomText.innerHTML = bottomTextField.value;
+    memeURLfield.value = "";
+    topTextField.value = "";
+    bottomTextField.value = "";
+  } 
+
+  // Function for deleting memes
+  function deleteMeme() {
+    this.closest(".memeContainer").remove();  
+  }
+    
+</script>
+</body>
+</html>
